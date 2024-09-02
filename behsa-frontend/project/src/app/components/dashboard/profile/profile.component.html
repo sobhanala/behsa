@@ -1,0 +1,46 @@
+<div class="profile">
+  <h2 class="profile-name">
+    <span>نام و نام خانوادگی:</span>
+    <span>{{ user?.firstName }}</span>
+    <span>{{ user?.lastName }}</span>
+  </h2>
+  <h3 class="profile-username">
+    <span>
+      نام کاربری:
+    </span>
+    <span>
+      {{ user?.userName }}
+    </span>
+  </h3>
+  <p class="profile-email">
+    <span>
+      ایمیل:
+    </span>
+    {{ user?.email }}
+  </p>
+  <div class="profile-role-container">
+    <span>وضعیت:</span>
+    @if (user?.role?.toLowerCase() === "admin") {
+      <ng-icon name="heroUserCircleSolid"></ng-icon>
+      <p>ادمین سیستم</p>
+    } @else if (user?.role?.toLowerCase() === "dataadmin") {
+      <ng-icon name="heroCircleStackSolid"></ng-icon>
+      <p>ادمین داده</p>
+    } @else {
+      <ng-icon name="heroMagnifyingGlassSolid"></ng-icon>
+      <p>آنالیزگر</p>
+    }
+  </div>
+  <ul>
+    <li routerLink="change-password" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="navbar-item">
+      <span>عوض کردن گذرواژه</span>
+    </li>
+    <li routerLink="edit-profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="navbar-item">
+      <span>ادیت کردن پروفایل</span>
+    </li>
+    <li (click)="handleLogout()" class="navbar-item">
+      <span>خروج از حساب</span>
+    </li>
+  </ul>
+</div>
+<router-outlet></router-outlet>

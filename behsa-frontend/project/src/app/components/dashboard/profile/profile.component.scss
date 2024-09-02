@@ -1,0 +1,33 @@
+@import '../../../../variables';
+@layer components {
+  .profile {
+    @apply p-12 rounded-3xl flex flex-col items-center gap-12;
+    background: $secondary-color;
+    color: #fdfdfd;
+    border-radius: 20px;
+    margin-inline: 50px;
+    height: 90vh;
+  }
+  .profile-name {
+    @apply text-[8rem];
+    letter-spacing: 0.35rem;
+  }
+  .profile-username {
+    @apply text-[7rem];
+    letter-spacing: 0.3rem;
+  }
+  .profile-email {
+    @apply text-[6rem];
+  }
+  .profile-role-container {
+    @apply flex flex-row justify-around items-center gap-[1rem] self-stretch;
+
+    ng-icon {
+      @apply w-[3rem] h-[3rem] ms-auto;
+    }
+
+    p {
+      @apply text-[3rem]
+    }
+  }
+}

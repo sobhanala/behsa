@@ -1,0 +1,76 @@
+name: CD_Frontend
+#hello
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  version-and-release:
+    runs-on: ubuntu-latest
+    outputs:  
+      frontimage_version: ${{ steps.tag_version.outputs.new_tag }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: login to docker registry
+        uses: docker/login-action@v3
+        with:
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_TOKEN}}
+
+      - name: build and push docker backend to registry
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: mohammadsadeghmontazeri/starfront:${{ steps.tag_version.outputs.new_tag }}
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: |
+            steps.tag_version.outputs.changelog
+          draft: false
+          prerelease: false
+  helm-update:
+    runs-on: ubuntu-latest
+    needs: [version-and-release]
+    steps:
+      - name: Clone Deployment Repository
+        uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+        with:
+          depth: 1
+          branch: 'main'
+          owner: 'Star-Academy'
+          repository: 'Summer1403-Project-Group01-Deployment'
+      
+      - name: Update Angular Image Tag in Helm Chart
+        run: |
+          cd Summer1403-Project-Group01-Deployment/mychart
+          sed -i 's|image: mohammadsadeghmontazeri/starfront:.*|image: mohammadsadeghmontazeri/starfront:${{ needs.version-and-release.outputs.frontimage_version }}|' values.yaml
+          git config --global user.email "sadeghmomo2020@gmail.com"
+          git config --global user.name "msm1984"
+          git commit -am "Update Angular image tag to ${{ needs.version-and-release.outputs.frontimage_version }}"
+      
+      - name: Push to Deployment Repository
+        run: |
+          cd Summer1403-Project-Group01-Deployment
+          git remote set-url origin https://x-access-token:${{ secrets.MYPAT }}@github.com/Star-Academy/Summer1403-Project-Group01-Deployment.git
+          git push    

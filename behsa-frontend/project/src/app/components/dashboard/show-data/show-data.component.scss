@@ -1,0 +1,154 @@
+@import "../../../../variables";
+
+@layer utilities {
+  .data-show-container {
+    @apply flex flex-col justify-start items-center gap-4 h-[100vh];
+  }
+  .upload-form {
+    @apply border-2 border-t-0 rounded-2xl p-4 text-[2rem] flex flex-row items-center justify-start gap-6;
+    border-color: black;
+  }
+  .upload-input {
+    @apply hidden;
+  }
+  .input-label {
+    @apply cursor-pointer p-2;
+
+    &:hover {
+      @apply border-b border-b-black
+    }
+  }
+  .form-button {
+    color: $primary-color;
+    border-color: $primary-color;
+
+    &:hover {
+      color: $bg-color;
+      background-color: $primary-color;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+
+      &:hover {
+        color: $primary-color;
+        background-color: $bg-color;
+      }
+    }
+  }
+  .select-group {
+    @apply focus:outline-none p-2 rounded-2xl;
+    background-color: $bg-color;
+
+    border: 1px solid black;
+  }
+  .show-button {
+    @apply text-[2rem] self-center border rounded-3xl p-3 transition-all duration-300 ease-in-out;
+    color: $primary-color;
+    border-color: $primary-color;
+
+    &:hover {
+      @apply transition-all duration-300 ease-in-out;
+      background-color: $primary-color;
+      color: $bg-color;
+    }
+  }
+  .table-container {
+    @apply absolute p-6 justify-center items-center rounded-2xl hidden text-[1.5rem] overflow-auto z-20;
+    background-color: $primary-color;
+    color: $bg-color;
+
+    inline-size: 70rem;
+    block-size: 50rem;
+
+    inset-block-start: calc(50vh - 25rem);
+    inset-inline-start: calc(50vw - 35rem);
+
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-gutter: stable;
+    scrollbar-color: $bg-color $primary-color;
+  }
+  .table {
+    @apply border-separate border-spacing-4 table-auto mt-10;
+
+    thead {
+      @apply top-0 sticky;
+      background-color: $bg-color;
+      color: black;
+    }
+
+    td, th {
+      @apply border-b p-1;
+      border-color: $bg-color;
+    }
+  }
+  .form-search-user {
+    @apply text-[2rem] self-center border rounded-2xl transition-all duration-300 ease-in-out p-4 flex flex-row
+      gap-4 items-center;
+    inline-size: 70rem;
+
+    input {
+      @apply flex-grow p-4 rounded-2xl;
+    }
+  }
+  #graph-container {
+    @apply relative self-stretch flex-grow m-8 rounded-xl flex flex-row justify-center items-center text-[3rem];
+    background-color: $secondary-color;
+  }
+  .showUserContainer {
+    @apply hidden flex-row justify-center items-center absolute text-[2rem] rounded-2xl z-30;
+    background-color: $primary-color;
+    color: $bg-color;
+
+    inline-size: 85rem;
+    block-size: 60rem;
+
+    inset-inline-end: calc(50vw - 42.5rem);
+    inset-block-start: calc(50vh - 30rem);
+
+    table {
+      @apply table-auto border-4;
+      border-color: $text-color;
+
+      td {
+        @apply p-3;
+      }
+    }
+  }
+  .disabled {
+    @apply opacity-50 hover:cursor-none;
+  }
+}
+
+.context-menu-container {
+  position: absolute;
+
+  display: none;
+
+  padding: 1rem;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $primary-color;
+  color: $bg-color;
+
+  font-size: 1.6rem;
+
+  ul {
+    list-style: none;
+
+    padding: 0.1rem;
+
+    li {
+      padding: 0.5rem;
+      user-select: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

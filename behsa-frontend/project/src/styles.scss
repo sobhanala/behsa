@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "VazirmatnBold";
+  src: url('./app/statics/Vazirmatn/static/Vazirmatn-Bold.ttf');
+}
+@font-face {
+  font-family: "Vazirmatn";
+  src: url('./app/statics/Vazirmatn/static/Vazirmatn-Medium.ttf');
+}
+@font-face {
+  font-family: "VazirMatnLight";
+  src: url('./app/statics/Vazirmatn/static/Vazirmatn-Light.ttf');
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  font-family: "Vazirmatn", sans-serif;
+  font-size: 62.5%;
+}
+html, body , h1,h2,h3,h4,h5,h6,p,li,span,a ,label,input, ::placeholder ,button{
+  font-family: "Vazirmatn" , sans-serif !important ;
+}
+
+input,
+label,
+select,
+textarea,
+button,
+fieldset,
+legend,
+datalist,
+output,
+option,
+pre,
+optgroup {
+  font-family: inherit;
+}

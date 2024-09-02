@@ -1,0 +1,72 @@
+// Tailwind CSS directives
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Colors
+$bg-color: #FDFDFD;
+
+$primary-color: #002B5B;
+$text-color : #172535;
+$secondary-color: #4F86C9;
+$success-color: #4FBD70;
+$accent-color: #E9B91B;
+$error-color: #F05A7E;
+
+// Base classes
+@layer components {
+  .xicon {
+    @apply absolute w-[4rem] h-[4rem] top-0 right-0;
+    color: $bg-color;
+  }
+  .fullscreen {
+    @apply flex flex-row justify-center items-center min-h-screen relative;
+
+
+    inline-size: 100%;
+  }
+  .form {
+    @apply flex flex-col justify-center items-center p-10 rounded-3xl gap-3;
+
+    background-color: $primary-color;
+    color: $bg-color;
+
+    box-shadow: 0 0 1.2rem black;
+  }
+  .form-label {
+    @apply text-[3rem] m-5 border-b-2 p-4 transition-all duration-300 delay-75 ease-in-out
+    hover:text-sky-100;
+  }
+  .form-input {
+    @apply self-stretch focus:outline-none focus:border-none p-3 rounded-3xl text-[1.5rem] transition-all duration-300
+    delay-75 ease-in-out;
+
+    color: black;
+
+    &:focus {
+      @apply transition-all duration-300 delay-75 ease-in-out;
+
+      box-shadow: 0 0 1.2rem $accent-color;
+    }
+  }
+  .form-invalid {
+    @apply p-2 text-[1.3rem] m-2 font-bold;
+
+    color: $error-color;
+  }
+  .form-button {
+    @apply p-4 m-4 rounded-2xl text-[1.5rem] transition-all duration-300 delay-75 ease-in-out;
+
+    background: transparent;
+    color: $success-color;
+
+    border: 2px solid $success-color;
+
+    &:hover {
+      @apply transition-all duration-300 delay-75 ease-in-out;
+
+      background: $success-color;
+      color: $bg-color;
+    }
+  }
+}

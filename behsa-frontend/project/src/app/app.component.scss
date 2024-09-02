@@ -1,0 +1,12 @@
+@import "../variables";
+
+@layer components {
+  .main {
+    @apply fullscreen;
+    width: 100vw;
+  }
+}
+
+app-dashboard {
+  inline-size: 100vw;
+}

@@ -1,0 +1,75 @@
+@import '../../../../variables';
+
+@layer components {
+  
+  .navbar-list {
+    @apply flex flex-col justify-start  gap-[20px] p-[1.5rem] w-full self-center ;
+    background-color: $primary-color;
+    height: 90%;
+    border-radius: 20px 0 0px 20px;
+
+    .logo{ 
+      height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 25px;
+      p{
+        color: $bg-color;
+        font-size: 32px;
+      }
+      svg{
+        height: 50px;
+        fill: #fdfdfd;
+        width: 50px;
+        padding: 5px;
+      }
+  }
+}
+  .navbar-item {
+    @apply text-[2rem] hover:cursor-pointer transition-all delay-75 ease-in-out  rounded-2xl;
+    color: $secondary-color;
+
+    background-color: $primary-color;
+    border: 3px solid $primary-color;
+    height: 65px;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    align-items: center;
+    gap: 10px;
+    transition-duration: 0.3s;
+
+    padding-right: 10px;
+    &:hover {
+      // @apply transition-all duration-300 delay-75 ease-in-out;
+      color: $secondary-color;
+      // background-color: $secondary-color;
+      border: 3px solid $secondary-color;
+      .heroArrowLeft{
+        color: $secondary-color;
+        display: block;
+        transition-duration: 0.3s;
+      }
+    }
+    ng-icon{
+      --ng-icon__size: 2.3rem !important;
+    }
+    .heroArrowLeft{
+      display: none;
+    }
+  }
+  .active {
+    background: $secondary-color;
+    color: $bg-color;
+    
+    &:hover {
+      color: $bg-color
+    }
+    
+    .heroArrowLeft {
+      display: none;
+    }
+  }
+  
+}

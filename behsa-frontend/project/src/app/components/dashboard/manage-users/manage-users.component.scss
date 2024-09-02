@@ -1,0 +1,87 @@
+@import '../../../../variables';
+
+@layer components {
+  .contain {
+    @apply flex flex-col items-center justify-start text-[2rem];
+
+    block-size: 100vh;
+  }
+  .search-form {
+    @apply p-4 flex flex-row items-center gap-8;
+
+    input {
+      @apply p-4 focus:outline-none rounded-2xl border-b transition-all duration-200 delay-75 ease-in-out;
+      border-color: black;
+
+      &:hover {
+        @apply transition-all duration-200 delay-75 ease-in-out;
+        border-color: $bg-color;
+      }
+    }
+
+    button[type="button"] {
+      @apply flex flex-row items-center gap-2;
+
+      .plusicon {
+        @apply w-[2.2rem] h-[2.2rem]
+      }
+    }
+  }
+  .line {
+    @apply border border-black w-full m-4;
+  }
+  .users-container {
+    @apply flex flex-row flex-wrap justify-center gap-6 p-8;
+  }
+  .user-container {
+    @apply flex flex-col items-center gap-4 p-4 border border-black rounded-2xl;
+
+    h3 {
+      @apply text-[1.8rem]
+    }
+
+    h4 {
+      @apply text-[1.6rem]
+    }
+
+    form {
+      @apply flex flex-row gap-4;
+
+      select {
+        @apply border border-black rounded-2xl text-[1.5rem];
+      }
+    }
+  }
+  .button {
+    @apply p-4 border transition-all duration-300 ease-in-out rounded-3xl text-[1.5rem];
+    background-color: $primary-color;
+    color: $bg-color;
+
+    &:hover {
+      @apply transition-all duration-300 ease-in-out;
+      background-color: $bg-color;
+      color: black;
+    }
+  }
+  .form-container {
+    @apply hidden absolute p-6 flex-col justify-center items-center text-[2rem] rounded-2xl;
+    background-color: $primary-color;
+    color: $bg-color;
+
+    inline-size: 50rem;
+    block-size: 85rem;
+
+    inset-block-start: calc(50vh - 42.5rem);
+    inset-inline-end: calc(50vw - 25rem);
+
+    .xicon {
+      @apply absolute w-[3.5rem] h-[3.5rem] top-0 right-0 hover:cursor-pointer;
+      color: $bg-color;
+    }
+
+    select {
+      @apply p-2 m-2 focus:outline-none rounded-2xl;
+      color: black
+    }
+  }
+}

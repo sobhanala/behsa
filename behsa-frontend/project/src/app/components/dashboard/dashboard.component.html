@@ -1,0 +1,16 @@
+<div class="fullscreen flex w-screen h-screen ">
+  <!-- <div #navbarIcon>
+    <ng-icon (click)="handleShowNavbar()" name="heroBars3" class="dashboard-navbar-icon"></ng-icon>
+  </div>
+  <nav #navbar class="dashboard-navbar hidden">
+    <ng-icon (click)="handleCloseNavbar()" name="heroArrowUturnRight" class="dashboard-navbar-back-icon"></ng-icon>
+    <app-navbar></app-navbar>
+  </nav>
+-->
+  <app-navbar class="w-[17vw] flex h-full"></app-navbar>
+  
+  <section #content class="dashboard-content w-[83vw]">
+    <router-outlet></router-outlet>
+  </section>
+</div> 
+

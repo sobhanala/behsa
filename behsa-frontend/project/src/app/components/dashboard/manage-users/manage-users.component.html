@@ -1,0 +1,89 @@
+<section class="contain">
+  <form class="search-form" (ngSubmit)="handleSearch()">
+    <input #searchElement type="search" placeholder="جستجوی کاربر"/>
+    <button class="button" type="submit">جستجو</button>
+    <button data-trigger-button (click)="handleShowForm()" class="button" type="button">
+      <ng-icon name="heroUserPlus" class="plusicon"></ng-icon>
+      اضافه کردن کاربر
+    </button>
+  </form>
+
+  <hr class="line" />
+
+  <div class="users-container">
+    @for (user of finalUsers; track user.userName) {
+      <div class="user-container">
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+        <h3>{{ user.userName }}</h3>
+        <h4>{{ user.email }}</h4>
+        <form (ngSubmit)="handleChangeRole(user)">
+          <select [selectedIndex]="user.role?.toLowerCase() === 'admin' ? 0 : user.role?.toLowerCase() === 'dataadmin' ? 1 : 2"
+                  [id]="user.userName"
+          >
+            <option value="admin">ادمین سیستم</option>
+            <option value="dataadmin">ادمین داده</option>
+            <option value="dataanalyst">تحلیلگر</option>
+          </select>
+          <button class="button" type="submit">تغییر نقش</button>
+        </form>
+      </div>
+    }
+  </div>
+</section>
+
+<form class="form-container" appBlurClick (blurClick)="handleClose()" (ngSubmit)="handleAdd()" [formGroup]="formGroup" #formElement>
+  <ng-icon name="heroXMark" class="xicon" (click)="handleClose()"></ng-icon>
+  <label class="form-label" for="firstName">نام:</label>
+  <input
+    type="text"
+    name="firstName"
+    id="firstName"
+    class="form-input"
+    formControlName="firstName"
+  />
+
+  <label class="form-label" for="lastName">نام خانوادگی:</label>
+  <input
+    type="text"
+    name="lastName"
+    id="lastName"
+    class="form-input"
+    formControlName="lastName"
+  />
+
+  <label class="form-label" for="email">ادرس اینترنتی:</label>
+  <input
+    type="email"
+    name="email"
+    id="email"
+    class="form-input"
+    formControlName="email"
+  />
+
+  <label class="form-label" for="userName">نام کاربری:</label>
+  <input
+    type="text"
+    name="userName"
+    id="userName"
+    class="form-input"
+    formControlName="userName"
+  />
+
+  <label class="form-label" for="password">رمز عبور:</label>
+  <input
+    type="text"
+    name="password"
+    id="password"
+    class="form-input"
+    formControlName="password"
+  />
+
+  <label class="form-label" for="role">نقش:</label>
+  <select id="role" name="role" formControlName="role">
+    <option value="Admin">ادمین سیستم</option>
+    <option value="DataAdmin">ادمین داده</option>
+    <option value="DataAnalyst">تحلیلگر</option>
+  </select>
+
+  <button type="submit" class="form-button">اضافه کردن کاربر</button>
+</form>

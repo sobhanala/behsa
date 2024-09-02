@@ -1,0 +1,104 @@
+<section class="data-show-container">
+  @if (user?.role?.toLowerCase() === "admin" || user?.role?.toLowerCase() === "dataadmin") {
+    <form (submit)="onSubmit()" class="upload-form">
+      <label for="type">نوع فایل:</label>
+      <select #selectElement id="type" class="select-group">
+        <option value="transaction">تراکنش ها</option>
+        <option value="account">هویت ها</option>
+      </select>
+      <label #labelElement for="upload-input" class="input-label">برای انتخاب فایل کلیک کنید</label>
+      <input #inputElement id="upload-input" class="upload-input" type="file" [multiple]="false" accept="text/csv" (change)="handleChange()" />
+      <button class="form-button" type="submit" [disabled]="handleDisabled()">آپلود کردن فایل</button>
+    </form>
+  }
+
+  <button data-trigger-button class="show-button" (click)="showData()">نشان دادن داده ها به صورت جدول</button><hr />
+  <div class="form-search-user">
+    <label for="search-user">شماره حساب کاربر:</label>
+    <input #searchIdElement id="search-user" type="search" placeholder="جستجو و نمایش گرافی داده های تراکنش یک کاربر" />
+    <button type="button" class="form-button" (click)="handleGetUser()">جستجو</button>
+  </div>
+  <div #dataElement class="table-container" appBlurClick (blurClick)="handleClose()">
+    <ng-icon name="heroXMark" class="xicon" (click)="handleClose()"></ng-icon>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>حساب مبدا</th>
+          <th>حساب مقصد</th>
+          <th>مبلغ تراکنش</th>
+          <th>تاریخ</th>
+          <th>نوع تراکنش</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (trans of data; track trans.TransactionId) {
+          <tr>
+            <td>{{ trans.sourceAccountId }}</td>
+            <td>{{ trans.destinationAccountId }}</td>
+            <td>{{ trans.amount | rialPipe }}</td>
+            <td>{{ trans.date | persianDate }}</td>
+            <td>{{ trans.type }}</td>
+          </tr>
+        } @empty {
+          <h4>هیچ داده ای برای نمایش یافت نشد.</h4>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div id="graph-container" #graphElement></div>
+</section>
+
+<div #contextElement class="context-menu-container" appBlurClick (blurClick)="handleCloseContext()">
+  <ul>
+    <li (click)="handleShowUser()" data-trigger-button>نمایش کاربر</li>
+    <li (click)="handleExpandGraph()">گسترش تراکنش ها</li>
+  </ul>
+</div>
+
+<div class="showUserContainer" #userContainer appBlurClick (blurClick)="handleCloseUser()">
+    <ng-icon (click)="handleCloseUser()" name="heroXMark" class="xicon"></ng-icon>
+    <table>
+      <tbody>
+        <tr>
+          <td>ایدی حساب:</td>
+          <td>{{ account?.accountId }}</td>
+        </tr>
+        <tr>
+          <td>شماره کارت:</td>
+          <td>{{ account?.cardId }}</td>
+        </tr>
+        <tr>
+          <td>شماره شبا:</td>
+          <td>{{ account?.iban }}</td>
+        </tr>
+        <tr>
+          <td>نوع حساب:</td>
+          <td>{{ account?.accountType }}</td>
+        </tr>
+        <tr>
+          <td>شماره تلفن شعبه:</td>
+          <td>{{ account?.branchTelephone }}</td>
+        </tr>
+        <tr>
+          <td>ادرس شعبه:</td>
+          <td>{{ account?.branchAddress }}</td>
+        </tr>
+        <tr>
+          <td>شعبه:</td>
+          <td>{{ account?.branchName }}</td>
+        </tr>
+        <tr>
+          <td>نام صاحب حساب:</td>
+          <td>{{ account?.ownerName }}</td>
+        </tr>
+        <tr>
+          <td>نام خانوادگی صاحب حساب:</td>
+          <td>{{ account?.ownerLastName }}</td>
+        </tr>
+        <tr>
+          <td>کد ملی صاحب حساب:</td>
+          <td>{{ account?.ownerId }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

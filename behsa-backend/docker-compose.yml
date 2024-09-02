@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: yourusername
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: YourDatabaseName
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  migrate:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    depends_on:
+      - db
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      ConnectionStrings__DefaultConnection: Host=db;Database=YourDatabaseName;Username=yourusername;Password=yourpassword
+    command: >
+      bash -c "dotnet tool install --global dotnet-ef &&
+               export PATH=\"$PATH:/root/.dotnet/tools\" &&
+               dotnet ef database update --project src/Infrastructure/Infrastructure.csproj --startup-project src/Web/Web.csproj"
+
+  web:
+    build:
+      context: .
+      dockerfile: backend.Dockerfile
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: Host=db;Database=YourDatabaseName;Username=yourusername;Password=yourpassword
+    ports:
+      - "8080:80"
+
+volumes:
+  pgdata:

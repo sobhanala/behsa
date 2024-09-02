@@ -1,0 +1,187 @@
+@import '../../../variables';
+
+@layer components {
+  .mobile {
+    @apply w-[100%] h-[100%] block lg:hidden
+  }
+  .laptop {
+    @apply w-[100%] h-[100%] hidden lg:block
+  }
+  .input-container {
+    @apply flex flex-row justify-start items-center w-[40rem] h-[2.7rem] border-b-[0.1rem] gap-[0.5rem] mt-[2rem] relative;
+    color: $secondary-color;
+    border-bottom-color: $secondary-color;
+
+    &:focus-within {
+      color: $bg-color;
+      border-bottom-color: $bg-color;
+    }
+
+    input {
+      @apply flex-grow bg-transparent text-[1.5rem];
+
+
+      &:focus {
+        @apply outline-none border-none;
+        color: $bg-color;
+        border-bottom-color: $bg-color;
+      }
+    }
+
+    label {
+      @apply absolute text-[2rem] transition-all duration-300 ease-in-out;
+      color: inherit;
+      inset-inline-start: 2.8rem;
+      inset-block-end: 0.4rem;
+    }
+
+    input:focus + label,
+    input:not(:placeholder-shown) + label {
+      @apply text-[1.4rem] transition-all duration-300 ease-in-out;
+      inset-block-start: -2rem;
+      inset-inline-start: 0.4rem;
+    }
+  }
+  .rectangle-top-left {
+    @apply absolute top-0 left-0 w-[13.9rem] h-[14.5rem] fill-none
+  }
+  .circle-top-right {
+    @apply absolute top-0 right-0 w-[4.4rem] h-[5.1rem] fill-none
+  }
+  .circle-bottom-left {
+    @apply absolute top-[44.6rem] left-0 fill-none w-[6.5rem] h-[15.6rem]
+  }
+  .rectangle-bottom-right {
+    @apply absolute bottom-0 right-0 fill-none w-[10.3rem] h-[14.5rem]
+  }
+  .form {
+    @apply flex flex-col justify-start items-center gap-[1rem]
+  }
+  .form-title {
+    @apply mb-[4rem] text-[3rem] font-bold;
+    color: $bg-color;
+  }
+  .form-identifier {
+    @apply input-container;
+
+    &:focus-within {
+      color: $bg-color;
+      border-bottom-color: $bg-color;
+    }
+
+    input {
+      @apply flex-grow;
+
+      &::placeholder {
+        color: $primary-color;
+      }
+    }
+  }
+  .form-password {
+    @apply input-container;
+
+    &:focus-within {
+      color: $bg-color;
+      border-bottom-color: $bg-color;
+    }
+
+    input {
+      @apply flex-grow;
+
+      &::placeholder {
+        color: $primary-color;
+      }
+    }
+  }
+  .form-button {
+    @apply flex w-full flex-row gap-2 justify-center rounded-full mt-[4rem] transition-all duration-300 delay-75 ease-in-out text-[1.8rem] items-center;
+
+    background: $accent-color;
+    color: $bg-color;
+
+    border: 1px solid $accent-color;
+
+    &:hover {
+        @apply transition-all duration-300 delay-75 ease-in-out;
+
+        background: $secondary-color;
+        border: 1px solid $secondary-color;
+    }
+
+    &:active {
+        @apply transition-transform duration-150 ease-in-out;
+
+        transform: scale(0.95);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+}
+
+  .rectangle-top-left-lg {
+    @apply absolute top-0 left-0 w-[9.3rem] h-[25.6rem] fill-none;
+  }
+  .rectangle-top-lg {
+    @apply absolute w-[15.6rem] h-[5.2rem] fill-none left-[102.5rem] top-0;
+  }
+  .rectangle-bottom-right-lg {
+    @apply absolute w-[17.4rem] h-[14.5rem] fill-none bottom-0 right-0;
+  }
+  .rectangle-bottom-lg {
+    @apply absolute w-[29rem] h-[7.2rem] fill-none left-[17.6rem] bottom-0;
+  }
+  .container-lg {
+    @apply flex flex-row-reverse gap-0 w-[120rem] h-[60rem];
+  }
+  .p-svg-form-lg {
+    @apply h-[100%] fill-none basis-2/5 rounded-l-3xl flex w-full ;
+    background-color: $secondary-color;
+  }
+  .svg-form-lg {
+    @apply mx-[-30px] w-[31vw];
+  }
+  .form-container-lg {
+    @apply basis-3/5 rounded-r-3xl flex flex-row justify-center items-center;
+    background-color: $primary-color;
+  }
+  .form-lg {
+    @apply flex flex-col justify-start items-center gap-[2rem];
+
+    ng-icon {
+      @apply w-[1.8rem] h-[1.8rem];
+    }
+  }
+  .form-title-lg {
+    @apply mb-[4rem] text-[4rem] font-bold;
+    color: $bg-color;
+  }
+  .form-identifier-lg {
+    @apply input-container;
+
+    input {
+      &::placeholder {
+        color: $primary-color;
+      }
+
+      &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px $primary-color inset !important;
+        box-shadow: 0 0 0 1000px $primary-color inset !important;
+        -webkit-text-fill-color: $bg-color !important; /* Set text color to black */
+      }
+    }
+  }
+  .form-password-lg {
+    @apply input-container;
+
+    input {
+
+      &::placeholder {
+        color: $primary-color;
+      }
+
+      &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px $primary-color inset !important;
+        box-shadow: 0 0 0 1000px $primary-color inset !important;
+        -webkit-text-fill-color: $bg-color !important; /* Set text color to black */
+      }
+    }
+  }
+}

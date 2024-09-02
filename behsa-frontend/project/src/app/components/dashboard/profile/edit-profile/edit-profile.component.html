@@ -1,0 +1,49 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="form float-center">
+  <ng-icon name="heroXMark" class="xicon" (click)="handleClose()"></ng-icon>
+  <label for="firstName" class="form-label">نام:</label>
+  <input
+    id="firstName"
+    name="firstName"
+    type="text"
+    formControlName="firstName"
+    class="form-input"
+    dir="ltr"
+  />
+  <span class="form-invalid" *ngIf="formGroup.get('firstName')?.invalid && ( formGroup.get('firstName')?.dirty || formGroup.get('firstName')?.touched )">
+    @if (formGroup.get('firstName')?.hasError('required')) {
+      این فیلد الزامی است.
+    }
+  </span>
+
+  <label for="lastName" class="form-label">نام خانوادگی:</label>
+  <input
+    id="lastName"
+    name="lastName"
+    type="text"
+    formControlName="lastName"
+    class="form-input"
+    dir="ltr"
+  />
+  <span class="form-invalid" *ngIf="formGroup.get('lastName')?.invalid && ( formGroup.get('lastName')?.dirty || formGroup.get('lastName')?.touched )">
+    @if (formGroup.get('lastName')?.hasError('required')) {
+      این فیلد الزامی است.
+    }
+  </span>
+
+  <label for="userName" class="form-label">نام مستعار:</label>
+  <input
+    id="userName"
+    name="userName"
+    type="text"
+    formControlName="userName"
+    class="form-input"
+    dir="ltr"
+  />
+  <span class="form-invalid" *ngIf="formGroup.get('userName')?.invalid && ( formGroup.get('userName')?.dirty || formGroup.get('userName')?.touched )">
+    @if (formGroup.get('userName')?.hasError('required')) {
+      این فیلد الزامی است.
+    }
+  </span>
+
+  <button class="form-button" type="submit">تغییر اطلاعات</button>
+</form>

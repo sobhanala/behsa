@@ -1,0 +1,24 @@
+@import "../../../variables";
+
+@layer components {
+  // .dashboard-navbar-icon {
+  //   @apply h-[3rem] w-[3rem] hover:cursor-pointer absolute top-1 right-0 rounded-2xl;
+  //   background-color: $primary-color;
+  //   color: $bg-color;
+  // }
+  // .dashboard-navbar-back-icon {
+  //   @apply h-[3rem] w-[3rem] hover:cursor-pointer;
+  // }
+  // .dashboard-navbar {
+  //   @apply self-stretch w-[100vw] lg:w-[20vw] p-4;
+  //   background-color: $primary-color;
+  //   color: $bg-color;
+  // }
+  // .dashboard-content {
+  //   @apply self-stretch flex w-[80vw] flex-row justify-center items-center;
+  //   background-color: $bg-color;
+  // }
+  .fullscreen{
+    background-color: $bg-color;
+  }
+}

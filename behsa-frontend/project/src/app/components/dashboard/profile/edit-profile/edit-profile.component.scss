@@ -1,0 +1,13 @@
+@import "../../../../../variables";
+
+@layer components {
+  .float-center {
+    @apply absolute rounded-2xl;
+
+    inline-size: 40rem;
+    block-size: 70rem;
+
+    inset-inline-start: calc(50vw - 20rem);
+    inset-block-start: calc(50vh - 35rem);
+  }
+}
