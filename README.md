@@ -1,4 +1,4 @@
-# Behsa â€” Account and Transaction Management
+# Behsa — Account and Transaction Management
 
 A web application with an ASP.NET Core 8 backend and Angular 18 frontend. The backend includes account and transaction services, profile management, user roles, and CSV handling.
 
