@@ -16,7 +16,6 @@ COPY --from=build /app/out ./
 
 # Environment variables for the database connection
 ENV ASPNETCORE_ENVIRONMENT=Development
-ENV ConnectionStrings__DefaultConnection=Host=db;Database=YourDatabaseName;Username=yourusername;Password=yourpassword
 ENV ASPNETCORE_URLS=http://*:80
 EXPOSE 80
 

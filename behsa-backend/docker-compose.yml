@@ -5,7 +5,7 @@ services:
     image: postgres:15
     environment:
       POSTGRES_USER: yourusername
-      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
       POSTGRES_DB: YourDatabaseName
     ports:
       - "5432:5432"
@@ -20,10 +20,10 @@ services:
     volumes:
       - .:/app
     environment:
-      ConnectionStrings__DefaultConnection: Host=db;Database=YourDatabaseName;Username=yourusername;Password=yourpassword
+      ConnectionStrings__DefaultConnection: Host=db;Database=YourDatabaseName;Username=yourusername;Password=${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
     command: >
-      bash -c "dotnet tool install --global dotnet-ef &&
-               export PATH=\"$PATH:/root/.dotnet/tools\" &&
+      bash -c "dotnet tool install --global dotnet-ef --version 8.0.7 &&
+               export PATH=\"$$PATH:/root/.dotnet/tools\" &&
                dotnet ef database update --project src/Infrastructure/Infrastructure.csproj --startup-project src/Web/Web.csproj"
 
   web:
@@ -35,7 +35,9 @@ services:
         condition: service_completed_successfully
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings__DefaultConnection: Host=db;Database=YourDatabaseName;Username=yourusername;Password=yourpassword
+      JwtSettings__Key: ${JWT_SIGNING_KEY:?Set JWT_SIGNING_KEY}
+      RootUser__Password: ${ROOT_USER_PASSWORD:?Set ROOT_USER_PASSWORD}
+      ConnectionStrings__DefaultConnection: Host=db;Database=YourDatabaseName;Username=yourusername;Password=${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
     ports:
       - "8080:80"
 
